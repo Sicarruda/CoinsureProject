@@ -1,5 +1,6 @@
 // import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Cards from '../components/Cards'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Home() {
@@ -9,7 +10,9 @@ function Home() {
       <Link to="/userPage"> Pagina do usuario </Link>
       <Link to="/login"> Login </Link>
       <Link to="/Registration"> Cadastro </Link>
-
+      <div>
+        <Cards />
+      </div>
     </div>
   );
 }
