@@ -1,0 +1,36 @@
+version: '3'
+
+volumes:
+  migrations: {}
+
+services:
+  mysql:
+    image: mysql
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d
+    ports:
+      - '3306:3306'
+    networks:
+      - projeto
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "Coinsure"
+      MYSQL_USER: "jessica"
+      MYSQL_PASSWORD: "123456"
+
+  app:
+  build: .
+  command: node_modules/.bin/nodemon --exec npm start
+  environment:
+    NODE_ENV: development
+  ports:
+    - 3001:3001
+  volumes:
+    .:/home/Coinsure/app
+  depends_on:
+    - mysql
+  networks:
+    - projeto
+
+networks:
+  projeto:
