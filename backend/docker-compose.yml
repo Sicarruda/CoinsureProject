@@ -19,18 +19,18 @@ services:
       MYSQL_PASSWORD: "123456"
 
   app:
-  build: .
-  command: node_modules/.bin/nodemon --exec npm start
-  environment:
-    NODE_ENV: development
-  ports:
-    - 3001:3001
-  volumes:
-    .:/home/Coinsure/app
-  depends_on:
-    - mysql
-  networks:
-    - projeto
+    build: .
+    command: node_modules/.bin/nodemon --exec npm start
+    environment:
+      NODE_ENV: development
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/home/Coinsure/app
+    depends_on:
+      - mysql
+    networks:
+      - projeto
 
 networks:
   projeto:
