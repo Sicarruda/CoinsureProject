@@ -3,7 +3,7 @@ const dbConfig = require('./config/config');
 const { username, password, database, host, port } = dbConfig.development;
 
 module.exports = {
-  client: 'mysql',
+  client: 'mysql2',
   connection: {
     host: host,
     port: port,
