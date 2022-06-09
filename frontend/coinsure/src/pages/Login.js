@@ -18,7 +18,6 @@ function Login() {
   async function sendLogin() {
     const loginData = { email: email, password: password };
     const userLogin = await postLogin(loginData);
-    console.log(userLogin);
     if (userLogin.message === 'Request failed with status code 404') {
       navigate('/registration', { replace: true });
     } else {
@@ -29,6 +28,7 @@ function Login() {
   return (
     <div>
       <h1>Login</h1>
+      <form>
       <label htmlFor="email-input">
         Email
         <input
@@ -57,6 +57,7 @@ function Login() {
       >
         Enviar
       </button>
+      </form>
     </div>
   );
 }

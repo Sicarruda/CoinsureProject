@@ -18,7 +18,7 @@ function Registration() {
   async function sendLogin() {
     const loginData = { email: email, password: password };
     const userLogin = await postRegistration(loginData);
-    if (userLogin.message === 'Request failed with status code 404') {
+    if (userLogin) {
       navigate('/registration', { replace: true });
     } else {
       navigate('/', { replace: true });
@@ -28,6 +28,7 @@ function Registration() {
   return (
     <div>
       <h1>Cadastro de usuarios</h1>
+      <form>
       <label htmlFor="email-input">
         Email
         <input
@@ -56,6 +57,7 @@ function Registration() {
       >
         Enviar
       </button>
+      </form>
     </div>
   );
 }

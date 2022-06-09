@@ -7,8 +7,6 @@ const loginServices = async ({ email, password }) => {
     .where({ email });
   
   if (userPassword.length > 0) {
-    console.log(userPassword)
-    console.log('AAAAA')
     const decryptedPassword = decrypt(userPassword.password_iv);
     if (password === decryptedPassword) {
       const token = createToken(email, userPassword.password);
