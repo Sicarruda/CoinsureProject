@@ -18,7 +18,7 @@ function Registration() {
   async function sendLogin() {
     const loginData = { email: email, password: password };
     const userLogin = await postRegistration(loginData);
-    if (userLogin) {
+    if (!userLogin) {
       navigate('/registration', { replace: true });
     } else {
       navigate('/', { replace: true });

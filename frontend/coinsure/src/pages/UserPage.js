@@ -6,7 +6,7 @@ import postProductUser from '../services/productUser';
 function UserPage() {
   const [productName, setProductName] = useState('');
   const [productValue, setProductValue] = useState('');
-  const [productImg, setProductImg] = useState('');
+  const [image, setImage] = useState('');
   const [productDescription, setProductDescription] = useState('');
 
   const navigate = useNavigate();
@@ -15,24 +15,25 @@ function UserPage() {
     productName,
     productValue,
     productDescription,
-    productImg,
+    image,
   };
 
-  async function sendProductData() {
+  const sendProductData = async (event) => {
+    event.preventDefault();
+    
     const newProduct = await postProductUser(productData);
+
     if (newProduct) {
-      navigate('/home', { replace: true });
+      navigate('/', { replace: true });
     } else {
-      navigate('/userProduct', { replace: true });
+      navigate('/userPage', { replace: true });
     }
-  }
+  };
 
   const hasProductData = (productData) => {
-    const { productName, productValue, productDescription, productImg } =
+    const { productName, productValue, productDescription, image } =
       productData;
-    console.log("hasProductData",'',!!(productName && productValue && productImg && productDescription))
-    return productName && productValue && productImg && productDescription
-      
+    return productName && productValue && image && productDescription;
   };
 
   const verifyProductName = (productName) => {
@@ -49,9 +50,9 @@ function UserPage() {
     return false;
   };
 
-  const verifyProductImg = (productImg) => {
-    const stringExtension = productImg.split('.')[1];
-    
+  const verifyProductImg = (image) => {
+    const stringExtension = image.name.split('.')[1];
+
     if (
       stringExtension === 'png' ||
       stringExtension === 'gif' ||
@@ -61,7 +62,7 @@ function UserPage() {
       return true;
     }
 
-    return false;
+    return true;
   };
 
   const verifyProductDescription = (productDescription) => {
@@ -89,12 +90,11 @@ function UserPage() {
   };
 
   const isButtonDisabled = () => {
-    console.log(productData);
     if (hasProductData(productData)) {
       return !verifyProductData(
         verifyProductName(productName),
         verifyProductValue(productValue),
-        verifyProductImg(productImg),
+        verifyProductImg(image),
         verifyProductDescription(productDescription)
       );
     }
@@ -103,7 +103,7 @@ function UserPage() {
 
   return (
     <div>
-      <form>
+      <form method="post" encType="multipart/form-data">
         <label htmlFor="product-name-input">
           Nome do produto
           <input
@@ -122,7 +122,8 @@ function UserPage() {
           Imagem do produto
           <input
             type="file"
-            onChange={({ target }) => setProductImg(target.value)}
+            name='image'
+            onChange={({ target }) => setImage(target.files[0])}
           ></input>
         </label>
         <label htmlFor="description-input">
@@ -143,5 +144,4 @@ function UserPage() {
     </div>
   );
 }
-
 export default UserPage;

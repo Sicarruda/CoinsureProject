@@ -1,26 +1,13 @@
 # CoinsureProject
-Projeto de avaliação para Coinsure
 
-To-do do projeto:
+## Projeto de avaliação para Coinsure
 
-- Front-end
-Pagina de login
-  login do usuario com senha encriptada (crypto)
+### Como rodar o projeto.
 
-pagina de cadastro
-  email
-  senha   
+Instale as dependencias com `npm i` no back e no front.
+Para rodar o front vá até /frontend/coinsure e rode `npm start`.
+Para rodar o back vá para /backend e rode `docker-compose build` e depois `docker-compose up`.
 
-pagina do usuario
-  cadastro de produto 
-    nome
-    descrição
-    valor
-    img - deve vir do computador do usuario, imput do tipo file necessario
+Não há dados no banco, então a tela inicial vai aparecer vazia em um primeiro momento.
 
-pagina principal
-  lista de produtos cadastrados 
 
-- Back-end
-  [x]comunicação com o banco mysql deve vir do knex
-  MSC

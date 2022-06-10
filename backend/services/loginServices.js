@@ -1,4 +1,4 @@
-const { decrypt, encrypt } = require('../middleware/crypto');
+const { decrypt } = require('../middleware/crypto');
 const { Usuarios } = require('../model/index');
 
 const loginServices = async ({ email, password }) => {
@@ -6,11 +6,16 @@ const loginServices = async ({ email, password }) => {
     .select(['password_iv', 'password'])
     .where({ email });
   
+  const userObj = {} 
+  userPassword.map((user)=>{
+    userObj['pass'] = user.password;
+    userObj['pass_iv']= user.password_iv
+  })
+
   if (userPassword.length > 0) {
-    const decryptedPassword = decrypt(userPassword.password_iv);
+    const decryptedPassword = decrypt(userObj);
     if (password === decryptedPassword) {
-      const token = createToken(email, userPassword.password);
-      return token;
+     return true
     }
   }
   return null;

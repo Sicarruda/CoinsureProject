@@ -11,6 +11,7 @@ COPY . $HOME/app
 RUN chown -R Coinsure:Coinsure $HOME/*
 
 USER Coinsure
+RUN mkdir /tmp/coinsure-uploads
 RUN npm install
 
 CMD ["npm", "start"]
