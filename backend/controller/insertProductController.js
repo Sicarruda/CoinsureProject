@@ -2,8 +2,11 @@ const services = require('../services/insertProductService');
 
 const insertProduct = async (req, res) => {
 
-  const { productData } = req.body;
-  console.log('product data', productData.productImg.name)
+  console.log("EEEEEEE", req.file);
+  
+
+  const  productData  = req.body;
+
   const product = await services.insertProduct(productData);
   if (product) {
     res.status(200).json(product);

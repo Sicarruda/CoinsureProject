@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import postProductUser from '../services/productUser';
+import axios from 'axios';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function UserPage() {
   const [productName, setProductName] = useState('');
   const [productValue, setProductValue] = useState('');
-  const [productImg, setProductImg] = useState('');
+  const [image, setImage] = useState(null);
   const [productDescription, setProductDescription] = useState('');
 
   const navigate = useNavigate();
@@ -15,22 +16,37 @@ function UserPage() {
     productName,
     productValue,
     productDescription,
-    productImg,
+    image,
   };
 
-  const sendProductData = async () => {
-    const newProduct = await postProductUser(productData);
-    if (newProduct) {
-      navigate('/', { replace: true });
-    } else {
-      navigate('/userPage', { replace: true });
+  const sendProductData = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    try {
+      const response = await axios({
+        method: "post",
+        url: "http://localhost:3000/api/userPage",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+    } catch(error) {
+      console.log(error)
     }
+
+    // const newProduct = await postProductUser(productData);
+
+    // if (newProduct) {
+    //   navigate('/', { replace: true });
+    // } else {
+    //   navigate('/userPage', { replace: true });
+    // }
   };
 
   const hasProductData = (productData) => {
-    const { productName, productValue, productDescription, productImg } =
+    const { productName, productValue, productDescription, image } =
       productData;
-    return productName && productValue && productImg && productDescription;
+    return productName && productValue && image && productDescription;
   };
 
   const verifyProductName = (productName) => {
@@ -47,8 +63,8 @@ function UserPage() {
     return false;
   };
 
-  const verifyProductImg = (productImg) => {
-    const stringExtension = productImg.name.split('.')[1];
+  const verifyProductImg = (image) => {
+    const stringExtension = image.name.split('.')[1];
 
     if (
       stringExtension === 'png' ||
@@ -91,7 +107,7 @@ function UserPage() {
       return !verifyProductData(
         verifyProductName(productName),
         verifyProductValue(productValue),
-        verifyProductImg(productImg),
+        verifyProductImg(image),
         verifyProductDescription(productDescription)
       );
     }
@@ -100,7 +116,7 @@ function UserPage() {
 
   return (
     <div>
-      <form>
+      <form method="post" encType="multipart/form-data">
         <label htmlFor="product-name-input">
           Nome do produto
           <input
@@ -119,7 +135,8 @@ function UserPage() {
           Imagem do produto
           <input
             type="file"
-            onChange={({ target }) => setProductImg(target.files[0])}
+            name='image'
+            onChange={({ target }) => setImage(target.files[0])}
           ></input>
         </label>
         <label htmlFor="description-input">
