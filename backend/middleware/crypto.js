@@ -25,11 +25,11 @@ const decrypt = (encryption) => {
   const decipher = crypto.createDecipheriv(
     'aes-256-cbc',
     Buffer.from(cryptoPassword),
-    Buffer.from(encryption.iv)
+    Buffer.from(encryption.pass_iv, 'hex')
   );
 
   const passwordDecrypted = Buffer.concat([
-    decipher.update(Buffer.from(encryption.password, 'hex')),
+    decipher.update(Buffer.from(encryption.pass, 'hex')),
     decipher.final(),
   ]);
   return passwordDecrypted.toString();

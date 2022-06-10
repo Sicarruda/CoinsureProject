@@ -8,7 +8,7 @@ function Cards({ objData }) {
   return (
     <div>
       <div>
-        <img src={img} alt="imagem de lampada"></img>
+        <img src={img} alt={img}></img>
       </div>
       <div>
         <p>{nome_produto}</p>

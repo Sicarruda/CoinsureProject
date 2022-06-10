@@ -14,4 +14,18 @@ module.exports = function (app) {
       }
     )
   );
+  app.use(
+    proxy.createProxyMiddleware(
+      '/fotos',
+      {
+        target: 'http://localhost:3001/fotos',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/fotos' : '/'
+      }
+      }
+    )
+  );
 };
+
+

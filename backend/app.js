@@ -7,8 +7,11 @@ const loginRouter = require('./routes/loginRouter');
 const registrationRouter = require('./routes/registrationRouter');
 const userPageRouter = require('./routes/userPageRouter');
 const homeRouter = require('./routes/homeRouter');
+const fotosRouter =require('./routes/fotosRouter')
 
 const app = express();
+app.use(express.static('public'))
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -21,5 +24,6 @@ app.use('/home', homeRouter);
 app.use('/login', loginRouter);
 app.use('/registration', registrationRouter);
 app.use('/userPage', userPageRouter);
+app.use('/fotos', fotosRouter)
 
 module.exports = app;

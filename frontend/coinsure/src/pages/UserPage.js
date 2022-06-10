@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import postProductUser from '../services/productUser';
-import axios from 'axios';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function UserPage() {
   const [productName, setProductName] = useState('');
   const [productValue, setProductValue] = useState('');
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const [productDescription, setProductDescription] = useState('');
 
   const navigate = useNavigate();
@@ -21,26 +20,14 @@ function UserPage() {
 
   const sendProductData = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("image", image);
-    try {
-      const response = await axios({
-        method: "post",
-        url: "http://localhost:3000/api/userPage",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    } catch(error) {
-      console.log(error)
+    
+    const newProduct = await postProductUser(productData);
+
+    if (newProduct) {
+      navigate('/', { replace: true });
+    } else {
+      navigate('/userPage', { replace: true });
     }
-
-    // const newProduct = await postProductUser(productData);
-
-    // if (newProduct) {
-    //   navigate('/', { replace: true });
-    // } else {
-    //   navigate('/userPage', { replace: true });
-    // }
   };
 
   const hasProductData = (productData) => {
