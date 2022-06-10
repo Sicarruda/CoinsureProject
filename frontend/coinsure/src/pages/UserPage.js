@@ -18,21 +18,19 @@ function UserPage() {
     productImg,
   };
 
-  async function sendProductData() {
+  const sendProductData = async () => {
     const newProduct = await postProductUser(productData);
     if (newProduct) {
-      navigate('/home', { replace: true });
+      navigate('/', { replace: true });
     } else {
-      navigate('/userProduct', { replace: true });
+      navigate('/userPage', { replace: true });
     }
-  }
+  };
 
   const hasProductData = (productData) => {
     const { productName, productValue, productDescription, productImg } =
       productData;
-    console.log("hasProductData",'',!!(productName && productValue && productImg && productDescription))
-    return productName && productValue && productImg && productDescription
-      
+    return productName && productValue && productImg && productDescription;
   };
 
   const verifyProductName = (productName) => {
@@ -50,8 +48,8 @@ function UserPage() {
   };
 
   const verifyProductImg = (productImg) => {
-    const stringExtension = productImg.split('.')[1];
-    
+    const stringExtension = productImg.name.split('.')[1];
+
     if (
       stringExtension === 'png' ||
       stringExtension === 'gif' ||
@@ -61,7 +59,7 @@ function UserPage() {
       return true;
     }
 
-    return false;
+    return true;
   };
 
   const verifyProductDescription = (productDescription) => {
@@ -89,7 +87,6 @@ function UserPage() {
   };
 
   const isButtonDisabled = () => {
-    console.log(productData);
     if (hasProductData(productData)) {
       return !verifyProductData(
         verifyProductName(productName),
@@ -122,7 +119,7 @@ function UserPage() {
           Imagem do produto
           <input
             type="file"
-            onChange={({ target }) => setProductImg(target.value)}
+            onChange={({ target }) => setProductImg(target.files[0])}
           ></input>
         </label>
         <label htmlFor="description-input">
@@ -143,5 +140,4 @@ function UserPage() {
     </div>
   );
 }
-
 export default UserPage;
