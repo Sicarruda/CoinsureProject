@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Registration from './pages/Registration';
 import UserPage from './pages/UserPage';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
