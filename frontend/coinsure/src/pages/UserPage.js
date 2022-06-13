@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import postProductUser from '../services/productUser';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function UserPage() {
   const [productName, setProductName] = useState('');
@@ -102,7 +102,7 @@ function UserPage() {
   };
 
   return (
-    <div class="container bg-light m-5">
+    <div classname="container bg-light m-5">
       <h3>Adicione um novo produto</h3>
       <form method="post" encType="multipart/form-data" className='border border-light rounded m-5'>
         <div className="form-row m-2">

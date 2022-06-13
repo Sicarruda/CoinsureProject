@@ -26,7 +26,7 @@ function Login() {
   }
 
   return (
-    <div class="container bg-light m-5">
+    <div className="container bg-light m-5">
       <div className="mx-auto p-2">
         <h1>Login</h1>
       </div>

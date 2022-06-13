@@ -11,7 +11,7 @@ function Cards({ objData }) {
         <div className="card border-light bg-light mb-3">
           <img
             className="card-img-top"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQik2gm4Yo_gFLhrJ525T1hUomfyPpP7NehYQ&usqp=CAU"
+            src={img}
             alt={img}
           ></img>
         </div>

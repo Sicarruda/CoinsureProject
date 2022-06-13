@@ -1,17 +1,10 @@
 FROM node:18
 
-RUN useradd --user-group --create-home --shell /bin/false Coinsure &&\
-  npm install --global npm@8.10.0
 
-ENV HOME=/home/Coinsure
+WORKDIR /app
+COPY . /app
 
-WORKDIR $HOME/app
-COPY . $HOME/app
-
-RUN chown -R Coinsure:Coinsure $HOME/*
-
-USER Coinsure
-RUN mkdir /tmp/coinsure-uploads
+RUN mkdir -p /app/public
 RUN npm install
 
 CMD ["npm", "start"]
