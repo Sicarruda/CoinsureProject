@@ -2,15 +2,9 @@ const services = require('../services/fotosServices');
 
 const fotosController = async (req, res) => {
 
-  const img = await services.fotosServices(req.body);
-  if (img) {
-    res.status(200).json({ img });
-  } else {
-    res.status(404).json({
-      status: 404,
-      error: 'User not fund',
-    });
-  }
+  const nomeDaFoto = req.url;
+  console.log("URL", nomeDaFoto);
+  res.sendFile(`./${nomeDaFoto}`,{root:"./public/uploads"});
 };
 
 module.exports = {

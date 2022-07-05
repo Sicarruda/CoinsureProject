@@ -16,7 +16,7 @@ function Home() {
   }, []);
 
   return (
-    <div class="container bg-light">
+    <div className="container bg-light">
       <h1 className='text-dark m-4'>Olá aqui é Ipssis Literis</h1>
       <ul className="nav nav-pills nav-fill">
         <li className="nav-item">

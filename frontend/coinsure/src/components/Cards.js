@@ -9,11 +9,7 @@ function Cards({ objData }) {
     <div className="col col-sm-5 m-4 p-0">
       <div className="card">
         <div className="card border-light bg-light mb-3">
-          <img
-            className="card-img-top"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQik2gm4Yo_gFLhrJ525T1hUomfyPpP7NehYQ&usqp=CAU"
-            alt={img}
-          ></img>
+          <img className="card-img-top" src={img} alt={img}></img>
         </div>
         <div className="card-header">
           <h4 className="card-title">{nome_produto}</h4>

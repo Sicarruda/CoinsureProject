@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import postRegistration from '../services/registration';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Registration() {
   const [email, setEmail] = useState('');
@@ -26,7 +26,7 @@ function Registration() {
   }
 
   return (
-    <div class="container bg-light  m-5">
+    <div className="container bg-light  m-5">
       <div className="mx-auto p-2">
         <h1>Cadastro</h1>
       </div>
